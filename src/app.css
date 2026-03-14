@@ -899,3 +899,253 @@ a {
   margin: 0;
   line-height: 1.6;
 }
+
+/* ── Hamburger Nav ── */
+.nav-hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-h);
+  padding: 0;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.nav-hamburger:hover {
+  background: var(--accent-bg);
+}
+
+.nav-backdrop {
+  display: none;
+}
+
+/* ── Responsive: 768px ── */
+@media (max-width: 768px) {
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    padding: 8px 16px 16px;
+    gap: 4px;
+    z-index: 99;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-menu>div {
+    width: 100%;
+  }
+
+  .nav-menu>div .nav-link {
+    display: block;
+    padding: 10px 12px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .nav-cta {
+    margin-top: 8px;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 98;
+    background: transparent;
+  }
+
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .site-nav-inner nav {
+    display: none
+  }
+
+  /* Hero */
+  .hero {
+    padding: 48px 0 36px;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+  }
+
+  /* Sections */
+  .why-switch,
+  .tools-section,
+  .comparison-section,
+  .faq-section {
+    padding: 32px 0;
+  }
+
+  .about-content {
+    padding: 32px 0;
+  }
+
+  .alt-page {
+    padding-bottom: 48px;
+  }
+
+  /* CTA Banner */
+  .cta-banner {
+    padding: 32px 28px;
+    margin-top: 32px;
+  }
+
+  /* MigratePage */
+  .app-header {
+    padding: 24px 0 16px;
+  }
+
+  .app-main {
+    padding: 20px 0;
+  }
+}
+
+/* ── Responsive: 480px ── */
+@media (max-width: 480px) {
+
+  /* Page containers */
+  .alt-page {
+    padding: 0 16px 32px;
+  }
+
+  .app-container {
+    padding: 0 16px;
+  }
+
+  .site-nav-inner nav {
+    display: none
+  }
+
+  /* Hero */
+  .hero {
+    padding: 24px 0 20px;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .hero-cta {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+
+  /* Sections */
+  .why-switch,
+  .tools-section,
+  .comparison-section,
+  .faq-section {
+    padding: 20px 0;
+  }
+
+  .about-content {
+    padding: 20px 0;
+  }
+
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  /* CTA Banner */
+  .cta-banner {
+    padding: 20px 16px;
+    margin-top: 20px;
+  }
+
+  .cta-banner h2 {
+    font-size: 20px;
+  }
+
+  .cta-banner p {
+    font-size: 14px;
+  }
+
+  .cta-banner .btn-primary {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+
+  /* Cards: force single column */
+  .why-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* FAQ */
+  .faq-item {
+    padding: 16px;
+  }
+
+  /* Wizard steps: hide text labels */
+  .step-label {
+    display: none;
+  }
+
+  .step-connector {
+    width: 24px;
+  }
+
+  /* Format tabs: fill row */
+  .format-tabs {
+    gap: 8px;
+  }
+
+  .format-tab {
+    flex: 1;
+    min-width: unset;
+    padding: 10px 8px;
+  }
+
+  /* Upload zone */
+  .upload-zone {
+    padding: 20px 16px;
+  }
+
+  /* Report actions: stack buttons full-width */
+  .report-actions {
+    flex-direction: column;
+  }
+
+  .report-actions .btn-primary,
+  .report-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* About content text */
+  .about-content p {
+    font-size: 16px;
+  }
+}
