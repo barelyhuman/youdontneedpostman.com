@@ -1,100 +1,97 @@
 import { useState } from 'preact/hooks'
-import preactLogo from './assets/preact.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './app.css'
+import { FileUpload } from './components/FileUpload'
+import { MigrationReportView } from './components/MigrationReport'
+import { convert } from './utils/converter'
+import type { Format } from './utils/converter'
+import { analyze } from './utils/analyzer'
+import type { MigrationReport } from './utils/analyzer'
+
+type Step = 'upload' | 'report'
 
 export function App() {
-  const [count, setCount] = useState(0)
+  const [step, setStep] = useState<Step>('upload')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [collection, setCollection] = useState<unknown>(null)
+  const [env, setEnv] = useState<unknown | null>(null)
+  const [report, setReport] = useState<MigrationReport | null>(null)
+
+  const handleFilesSelected = async (format: Format, collectionFile: File, envFile: File | null) => {
+    setLoading(true)
+    setError(null)
+    try {
+      const result = await convert(format, collectionFile, envFile)
+      const migrationReport = analyze(format, result.rawInput, result.rawEnvInput)
+      setCollection(result.collection)
+      setEnv(result.env)
+      setReport(migrationReport)
+      setStep('report')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err))
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleStartOver = () => {
+    setStep('upload')
+    setCollection(null)
+    setEnv(null)
+    setReport(null)
+    setError(null)
+  }
 
   return (
-    <>
-      <section id="center">
-        <div class="hero">
-          <img src={heroImg} class="base" width="170" height="179" alt="" />
-          <img src={preactLogo} class="framework" alt="Preact logo" />
-          <img src={viteLogo} class="vite" alt="Vite logo" />
+    <div class="app-container">
+      <header class="app-header">
+        <div class="app-header-inner">
+          <h1 class="app-title">Bruno Migration Tool</h1>
+          <p class="app-subtitle">Preview your migration before installing Bruno</p>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/app.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button class="counter" onClick={() => setCount((count) => count + 1)}>
-          Count is {count}
-        </button>
-      </section>
+      </header>
 
-      <div class="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg class="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img class="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://preactjs.com/" target="_blank">
-                <img class="button-icon" src={preactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+      <nav class="wizard-steps" aria-label="Progress">
+        <div class={`wizard-step${step === 'upload' ? ' active' : step === 'report' ? ' done' : ''}`}>
+          <span class="step-num">1</span>
+          <span class="step-label">Upload</span>
         </div>
-        <div id="social">
-          <svg class="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg class="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg class="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg class="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg class="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+        <div class="step-connector" />
+        <div class={`wizard-step${step === 'report' ? ' active' : ''}`}>
+          <span class="step-num">2</span>
+          <span class="step-label">Analysis</span>
         </div>
-      </section>
+        <div class="step-connector" />
+        <div class={`wizard-step${step === 'report' ? ' active' : ''}`}>
+          <span class="step-num">3</span>
+          <span class="step-label">Download</span>
+        </div>
+      </nav>
 
-      <div class="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <main class="app-main">
+        {error && (
+          <div class="error-banner" role="alert">
+            <strong>Error:</strong> {error}
+          </div>
+        )}
+
+        {step === 'upload' && (
+          <FileUpload onFilesSelected={handleFilesSelected} loading={loading} />
+        )}
+
+        {step === 'report' && report && (
+          <MigrationReportView
+            report={report}
+            collection={collection}
+            env={env}
+            onStartOver={handleStartOver}
+          />
+        )}
+      </main>
+
+      <footer class="app-footer">
+        <p>Runs entirely in your browser — no data is uploaded to any server.</p>
+      </footer>
+    </div>
   )
 }
