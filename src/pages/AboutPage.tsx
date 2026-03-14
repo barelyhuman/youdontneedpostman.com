@@ -23,13 +23,19 @@ export function AboutPage() {
     return (
         <main class="alt-page">
             <section class="hero">
-                <h1>About this site</h1>
+                <h1>About</h1>
                 <p class="hero-sub">
                     An independent resource for developers looking for better API clients than Postman.
                 </p>
             </section>
 
             <section class="about-content">
+
+                <h2 class="section-title">Author</h2>
+                <p>
+                    I'm <a href="https://reaper.is">reaper</a>, I work at bruno (<a href="https://usebruno.com">usebruno.com</a>) and this was something I thought off while going through user pain points on our socials and other feedback sinks.
+                </p>
+
                 <h2 class="section-title">What is this?</h2>
                 <p>
                     <a href="https://youdontneedpostman.com">youdontneedpostman.com</a> exists as a central place for developers who are done with Postman's direction and want to know what else is out there. It lists the best free, open-source alternatives and provides a visual browser-based migration tool so you can convert your Postman collections to Bruno without installing anything.
