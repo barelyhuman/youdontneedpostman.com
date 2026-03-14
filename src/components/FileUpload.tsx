@@ -9,7 +9,7 @@ interface Props {
 }
 
 const FORMATS: { value: Format; label: string; description: string }[] = [
-  { value: 'postman', label: 'Postman', description: 'Collection v2 / v2.1 JSON' },
+  { value: 'postman', label: 'Postman', description: 'Collection JSON' },
   { value: 'insomnia', label: 'Insomnia', description: 'Export JSON' },
   { value: 'openapi', label: 'OpenAPI', description: 'Spec JSON or YAML' },
 ]
