@@ -1,5 +1,6 @@
 import type { MigrationReport } from '../utils/analyzer'
 import { downloadCollection, downloadEnvironment } from '../utils/download'
+import { IconCheck, IconAlertTriangle, IconX, IconMinus } from '@tabler/icons-preact'
 
 interface Props {
   report: MigrationReport
@@ -19,12 +20,12 @@ function SummaryCard({ label, value, status }: { label: string; value: number | 
 }
 
 function Section({ title, status, children }: { title: string; status: 'ok' | 'warn' | 'error' | 'neutral'; children: preact.ComponentChildren }) {
-  const icon = status === 'ok' ? '✓' : status === 'warn' ? '⚠' : status === 'error' ? '✗' : '·'
+  const Icon = status === 'ok' ? IconCheck : status === 'warn' ? IconAlertTriangle : status === 'error' ? IconX : IconMinus
   const cls = status === 'ok' ? 'section-status ok' : status === 'warn' ? 'section-status warn' : status === 'error' ? 'section-status error' : 'section-status neutral'
   return (
     <div class="report-section">
       <div class="section-header">
-        <span class={cls}>{icon}</span>
+        <span class={cls}><Icon size={16} /></span>
         <h3>{title}</h3>
       </div>
       <div class="section-body">{children}</div>

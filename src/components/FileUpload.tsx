@@ -1,5 +1,6 @@
 import { useState, useRef } from 'preact/hooks'
 import type { JSX } from 'preact'
+import { IconCheck, IconUpload } from '@tabler/icons-preact'
 import type { Format } from '../utils/converter'
 
 interface Props {
@@ -59,13 +60,13 @@ function DropZone({
       />
       {file ? (
         <div class="upload-zone-file">
-          <span class="upload-zone-icon">✓</span>
+          <IconCheck class="upload-zone-icon" size={20} />
           <span class="upload-zone-name">{file.name}</span>
           <span class="upload-zone-size">({(file.size / 1024).toFixed(1)} KB)</span>
         </div>
       ) : (
         <div class="upload-zone-placeholder">
-          <span class="upload-zone-icon">⬆</span>
+          <IconUpload class="upload-zone-icon" size={24} />
           <span>{label}</span>
           <span class="upload-zone-hint">Drop file here or click to browse</span>
         </div>
@@ -143,6 +144,7 @@ export function FileUpload({ onFilesSelected, loading }: Props) {
         onClick={handleAnalyze}
         disabled={loading || !collectionFile}
       >
+        {loading && <span class="spinner" />}
         {loading ? 'Analyzing…' : 'Analyze Migration'}
       </button>
     </div>
