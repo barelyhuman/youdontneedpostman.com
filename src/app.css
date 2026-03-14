@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+a {
+  color: var(--accent);
+}
+
 .app-header {
   padding: 40px 0 24px;
   text-align: center;
@@ -238,6 +242,7 @@
 .btn-secondary {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   padding: 10px 24px;
   background: transparent;
   color: var(--text-h);
@@ -605,6 +610,27 @@
   font-size: 16px;
   padding: 14px 32px;
   text-decoration: none;
+}
+
+/* ── About Content ── */
+.about-content {
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+
+.about-content p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0 0 32px;
+}
+
+.about-content .section-title {
+  margin-top: 40px;
+}
+
+.about-content .section-title:first-child {
+  margin-top: 0;
 }
 
 /* ── Why Switch ── */
