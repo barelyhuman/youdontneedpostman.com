@@ -14,6 +14,14 @@ export function App() {
         <Route path="/" component={AlternativesPage} />
         <Route path="/migrate" component={MigratePage} />
         <Route path="/about" component={AboutPage} />
+        <footer class="site-footer">
+          <p>
+            <strong>Satire disclaimer:</strong> This site's name is a satire and commentary on the state of API tooling.
+            It is not affiliated with, endorsed by, or connected to Postman, Inc. in any way.
+            "Postman" is a registered trademark of Postman, Inc.
+            All conversion runs entirely in your browser — no data is sent to any server.
+          </p>
+        </footer>
       </div>
     </Router>
   )

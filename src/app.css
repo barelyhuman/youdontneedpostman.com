@@ -559,7 +559,26 @@ a {
   flex-direction: column;
 }
 
-/* ── Alternatives Page ── */
+/* ── Site Footer ── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 16px 24px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.site-footer p {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.site-footer strong {
+  color: var(--text-h);
+}
+
+
 .alt-page {
   display: flex;
   flex-direction: column;
