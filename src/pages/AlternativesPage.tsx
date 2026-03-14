@@ -185,7 +185,7 @@ export function AlternativesPage() {
             name="Bruno"
             tagline="Open-source · Git-native · Offline-first"
             description="Your API collections live on disk as plain files. Version them with git, use them offline, pay nothing. Bruno is the obvious upgrade from Postman."
-            badges={['Open source', 'Git-native', 'Offline', 'Free forever', '28k+ ★ GitHub']}
+            badges={['Open source', 'Git-native', 'Offline', 'Free forever', '40k+ ★ GitHub']}
             ctaLabel="Get Bruno →"
             ctaHref="https://usebruno.com"
             accentColor="#f4a623"
@@ -196,7 +196,7 @@ export function AlternativesPage() {
             name="Yaak"
             tagline="Modern UI · Cross-platform · Fast"
             description="Yaak is a modern API client focused on simplicity and speed. Clean interface, great UX, and works on all platforms."
-            badges={['Modern UI', 'Cross-platform', 'Fast', 'Local storage']}
+            badges={['Modern UI', 'Cross-platform', 'Fast', 'Local storage', '18k+ ★ GitHub']}
             ctaLabel="Try Yaak →"
             ctaHref="https://yaak.app"
             accentColor="#7c3aed"

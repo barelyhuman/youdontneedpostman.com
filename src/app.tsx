@@ -4,6 +4,7 @@ import { Nav } from './components/Nav'
 import { AlternativesPage } from './pages/AlternativesPage'
 import { MigratePage } from './pages/MigratePage'
 import './app.css'
+import { AboutPage } from './pages/AboutPage'
 
 export function App() {
   return (
@@ -12,6 +13,7 @@ export function App() {
         <Nav />
         <Route path="/" component={AlternativesPage} />
         <Route path="/migrate" component={MigratePage} />
+        <Route path="/about" component={AboutPage} />
       </div>
     </Router>
   )
