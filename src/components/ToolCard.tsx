@@ -20,7 +20,7 @@ export function ToolCard({ name, tagline, description, badges, ctaLabel, ctaHref
           <h3 class="tool-name">{name}</h3>
           <p class="tool-tagline">{tagline}</p>
         </div>
-        {featured && <span class="tool-featured-badge">Top Pick</span>}
+        {featured && <span class="tool-featured-badge">Top Pick (Obviously)</span>}
       </div>
       <p class="tool-description">{description}</p>
       <div class="tool-badges">
